@@ -1,12 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
+import { FaqAccordion, type FaqItem } from "@/components/FaqAccordion";
 import { Reveal } from "@/components/ui/Reveal";
 
-const WHATSAPP_NUMBER = "5511999999999"; // Substituir pelo número real
-const WHATSAPP_MSG = encodeURIComponent(
-  "Olá Wesley! Vim pelo site e gostaria de agendar uma avaliação."
-);
-const WHATSAPP_HREF = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`;
+const WHATSAPP_HREF =
+  "https://wa.me/5562992218107?text=Gostaria%20de%20saber%20mais%20sobre%20as%20consultas!";
 
 export default function Home() {
   return (
@@ -16,6 +14,7 @@ export default function Home() {
       <Sintomas />
       <Sobre />
       <ProvaSocial />
+      <PerguntasFrequentes />
       <CtaFinal />
       <Footer />
     </main>
@@ -39,13 +38,18 @@ function Nav() {
           <a href="#depoimentos" className="text-sm font-semibold uppercase tracking-wide text-paper/70 transition-colors hover:text-cyan">
             Depoimentos
           </a>
+          <a href="#faq" className="text-sm font-semibold uppercase tracking-wide text-paper/70 transition-colors hover:text-cyan">
+            Dúvidas
+          </a>
         </div>
-        <Link
-          href="/admin"
+        <a
+          href={WHATSAPP_HREF}
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex items-center gap-2 rounded-md bg-cyan px-4 py-2.5 text-sm font-bold text-ink transition-colors hover:bg-white"
         >
-          Área ADM
-        </Link>
+          Agendar Avaliação
+        </a>
       </div>
     </nav>
   );
@@ -66,11 +70,10 @@ function Hero() {
         {/* Mobile: image sits above the copy, not behind it */}
         <div className="relative aspect-[4/5] w-full md:hidden">
           <Image
-            src="/images/hero-mobile.jpg"
-            alt="Wesley Loureno, fisioterapeuta e quiropraxista, em seu consultório"
+            src="/images/hero-mobile.png"
+            alt="Everton Carlos, fisioterapeuta e quiropraxista, em seu consultório"
             fill
             priority
-            quality={90}
             sizes="100vw"
             className="object-cover object-top"
           />
@@ -79,11 +82,10 @@ function Hero() {
 
         {/* Desktop / tablet: full-bleed background with copy overlaid */}
         <Image
-          src="/images/hero-bg.jpg"
-          alt="Wesley Loureno, fisioterapeuta e quiropraxista, em seu consultório"
+          src="/images/hero-bg.png"
+          alt="Everton Carlos, fisioterapeuta e quiropraxista, em seu consultório"
           fill
           priority
-          quality={100}
           sizes="100vw"
           className="hidden object-cover object-[66%_38%] md:block"
         />
@@ -91,39 +93,39 @@ function Hero() {
         <div className="relative z-10 px-6 pb-10 pt-2 md:flex md:flex-1 md:flex-col md:justify-center md:px-10 md:py-28">
           <div className="mx-auto w-full max-w-6xl">
             <div className="max-w-xl">
-              <h1 className="text-4xl font-display font-extrabold leading-[1.05] tracking-tight text-white sm:text-6xl md:text-[3.6rem] lg:text-7xl">
-                Movimento
-                <br />
-                sem dor.
-                <br />
-                <span className="relative inline-block text-cyan">
-                  Performance sem limites.
-                  <span className="absolute -bottom-2 left-0 h-[3px] w-2/3 bg-cyan" />
-                </span>
-              </h1>
+              <Reveal direction="down" duration={900}>
+                <h1 className="text-4xl font-display font-extrabold leading-[1.05] tracking-tight text-white sm:text-6xl md:text-[3.6rem] lg:text-7xl">
+                  Movimento
+                  <br />
+                  sem dor.
+                  <br />
+                  <span className="relative inline-block text-cyan">
+                    Performance sem limites.
+                    <span className="absolute -bottom-2 left-0 h-[3px] w-2/3 bg-cyan" />
+                  </span>
+                </h1>
+              </Reveal>
 
-              <p className="mt-7 max-w-md text-base leading-relaxed text-paper/75 md:text-lg">
-                Descubra em menos de 2 minutos o motivo real da sua dor — e o
-                caminho pra resolver sem depender de cirurgia.
-              </p>
+              <Reveal direction="up" delay={200} duration={800}>
+                <p className="mt-7 max-w-md text-base leading-relaxed text-paper/75 md:text-lg">
+                  Agende sua avaliação e descubra o motivo real da sua dor — e o
+                  caminho pra resolver sem depender de cirurgia.
+                </p>
+              </Reveal>
 
-              <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-                <Link
-                  href="/quiz"
-                  className="inline-flex items-center gap-2 rounded-md bg-cyan px-7 py-4 text-base font-bold text-ink transition-colors hover:bg-white"
-                >
-                  Iniciar minha avaliação
-                  <ArrowIcon />
-                </Link>
-                <a
-                  href={WHATSAPP_HREF}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-paper/60 underline decoration-paper/30 underline-offset-4 transition-colors hover:text-cyan hover:decoration-cyan"
-                >
-                  prefere WhatsApp? fale direto
-                </a>
-              </div>
+              <Reveal direction="up" delay={350} duration={800}>
+                <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+                  <a
+                    href={WHATSAPP_HREF}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-md bg-cyan px-7 py-4 text-base font-bold text-ink transition-all hover:bg-white hover:shadow-[0_0_24px_rgba(0,191,244,0.6)]"
+                  >
+                    Agendar Avaliação
+                    <ArrowIcon />
+                  </a>
+                </div>
+              </Reveal>
             </div>
           </div>
         </div>
@@ -150,37 +152,42 @@ const symptoms = [
     slug: "costas",
     label: "Dor nas Costas",
     sub: "lombar, meio das costas, ciático",
-    img: "/images/costas-fit.jpg",
+    img: "/images/costas-fit.png",
     tag: "L1–L5 · LOMBAR",
+    pos: "object-[38%_50%]",
   },
   {
     slug: "cervical",
     label: "Pescoço e Cervical",
     sub: "rigidez, dor ao virar o pescoço",
-    img: "/images/cervical-fit.jpg",
+    img: "/images/cervical-fit.png",
     tag: "C1–C7 · CERVICAL",
+    pos: "object-center",
   },
   {
     slug: "esportiva",
     label: "Lesão Esportiva",
     sub: "treino, corrida, jogo",
-    img: "/images/esportiva-fit.jpg",
+    img: "/images/esportiva-fit.png",
     tag: "MMII · ARTICULAR",
+    pos: "object-[55%_50%]",
   },
   {
     slug: "hernia",
     label: "Hérnia de Disco",
     sub: "diagnóstico já feito",
-    img: "/images/hernia-fit.jpg",
+    img: "/images/hernia-fit.png",
     tag: "L4–L5 · DISCO",
+    pos: "object-center",
     wide: true,
   },
   {
     slug: "outro",
     label: "Não sei bem",
     sub: "quero orientação",
-    img: "/images/outro-fit.jpg",
+    img: "/images/outro-fit.png",
     tag: "AVALIAÇÃO · LIVRE",
+    pos: "object-center",
     wide: true,
   },
 ];
@@ -197,27 +204,33 @@ function Sintomas() {
             <span className="text-cyan-deep">E tem solução.</span>
           </h2>
           <p className="mt-4 text-base leading-relaxed text-slate">
-            Toque no que mais parece com o que você sente. A gente já direciona
-            sua avaliação pro ponto certo.
+            Toque no que mais parece com o que você sente e agende sua
+            avaliação diretamente pelo WhatsApp.
           </p>
         </Reveal>
 
         <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6">
-          {symptoms.map((s) => (
+          {symptoms.map((s, idx) => (
             <Reveal
               key={s.slug}
+              direction="up"
+              delay={idx * 120}
               className={`group relative aspect-[4/3] overflow-hidden rounded-2xl bg-ink ${
                 s.wide ? "sm:col-span-2 lg:col-span-3" : "lg:col-span-2"
               }`}
             >
-              <Link href={`/quiz?sintoma=${s.slug}`} className="absolute inset-0 block">
+              <a
+                href={WHATSAPP_HREF}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute inset-0 block"
+              >
                 <Image
                   src={s.img}
                   alt={s.label}
                   fill
-                  quality={100}
                   sizes="(min-width: 1024px) 40vw, (min-width: 640px) 50vw, 100vw"
-                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                  className={`object-cover ${s.pos} transition-transform duration-500 ease-out group-hover:scale-105`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/15 to-transparent transition-opacity group-hover:from-ink/85" />
                 <div className="absolute inset-0 ring-1 ring-inset ring-white/10 transition-colors group-hover:ring-cyan/60" />
@@ -236,7 +249,7 @@ function Sintomas() {
                     {s.sub}
                   </p>
                 </div>
-              </Link>
+              </a>
             </Reveal>
           ))}
         </div>
@@ -259,29 +272,28 @@ function Sobre() {
       <SpineLine className="pointer-events-none absolute -left-6 bottom-0 h-[80%] w-10 text-cyan/10" />
 
       <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-[1.05fr_1fr] md:gap-16">
-        <Reveal className="relative">
+        <Reveal direction="left" duration={900} className="relative">
           <div className="relative aspect-[3/2] w-full overflow-hidden rounded-2xl border-l-2 border-cyan">
             <Image
-              src="/images/about-fit.jpg"
-              alt="Wesley Loureno em seu consultório, ao lado de um modelo anatômico de coluna"
+              src="/images/about-fit.png"
+              alt="Everton Carlos em seu consultório, ao lado de um modelo anatômico de coluna"
               fill
-              quality={100}
               sizes="(min-width: 768px) 50vw, 100vw"
-              className="object-cover"
+              className="object-cover object-[58%_50%]"
             />
             <div className="absolute bottom-4 left-4">
               <PrecisionTag label="Metodologia própria" dark />
             </div>
           </div>
           <p className="mt-3 font-mono text-[10px] uppercase tracking-wider text-paper/40">
-            Anápolis-GO · Consultório próprio
+            Consultório próprio
           </p>
         </Reveal>
 
-        <Reveal className="flex flex-col justify-center">
+        <Reveal direction="right" delay={150} duration={900} className="flex flex-col justify-center">
           <PrecisionTag label="Quem cuida de você" className="text-cyan" />
           <h2 className="mt-4 text-4xl font-display font-extrabold leading-tight md:text-5xl">
-            Wesley Loureno.
+            Everton Carlos.
           </h2>
           <p className="mt-1 text-paper/60">Fisioterapeuta · Quiropraxista Desportivo</p>
 
@@ -313,9 +325,9 @@ function Sobre() {
 /* ─────────────────────────── PROVA SOCIAL ─────────────────────────── */
 
 const sessionVideos = [
-  { src: "/videos/sessao-1.mp4", poster: "/images/sessao-1-poster.jpg" },
-  { src: "/videos/sessao-2.mp4", poster: "/images/sessao-2-poster.jpg" },
-  { src: "/videos/sessao-3.mp4", poster: "/images/sessao-3-poster.jpg" },
+  { src: "/videos/sessao-1.mp4", poster: "/images/sessao-1-poster.png" },
+  { src: "/videos/sessao-2.mp4", poster: "/images/sessao-2-poster.png" },
+  { src: "/videos/sessao-3.mp4", poster: "/images/sessao-3-poster.png" },
 ];
 
 function ProvaSocial() {
@@ -354,8 +366,13 @@ function ProvaSocial() {
             </h3>
           </Reveal>
           <div className="mt-8 grid gap-6 sm:grid-cols-3">
-            {sessionVideos.map((v) => (
-              <Reveal key={v.src} className="relative aspect-[9/12.8] overflow-hidden rounded-2xl bg-ink">
+            {sessionVideos.map((v, idx) => (
+              <Reveal
+                key={v.src}
+                direction="up"
+                delay={idx * 160}
+                className="relative aspect-[9/12.8] overflow-hidden rounded-2xl bg-ink"
+              >
                 <video
                   src={v.src}
                   poster={v.poster}
@@ -373,6 +390,55 @@ function ProvaSocial() {
   );
 }
 
+/* ─────────────────────────── PERGUNTAS FREQUENTES ─────────────────────────── */
+
+const faqItems: FaqItem[] = [
+  {
+    question: "Como a Quiropraxia pode ajudar na dor?",
+    answer:
+      "A quiropraxia atua corrigindo disfunções mecânicas e restrições de mobilidade na coluna e nas articulações. Com ajustes precisos, reduzimos a sobrecarga muscular, aliviamos a compressão sobre nervos e restauramos o movimento natural — tratando a causa da dor sem depender de cirurgia.",
+  },
+  {
+    question: "O que são injetáveis na dor?",
+    answer:
+      "São procedimentos minimamente invasivos e direcionados — como infiltrações articulares, viscossuplementação e terapia neural — que atuam diretamente no foco inflamatório ou articular. Eles aceleram o controle da dor e permitem evoluir com mais segurança na reabilitação funcional.",
+  },
+  {
+    question: "Como funcionam a Liberação Miofascial e a Reabilitação funcional?",
+    answer:
+      "A liberação miofascial desfaz pontos de tensão e aderências na musculatura e na fáscia, devolvendo flexibilidade imediata. Em seguida, a reabilitação funcional corrige padrões de movimento e fortalece as estruturas envolvidas para prevenir novas lesões.",
+  },
+  {
+    question: "Preciso ter exames prontos antes da primeira avaliação?",
+    answer:
+      "Não é obrigatório. Na primeira consulta realizamos uma avaliação clínica e de movimento detalhada para identificar a origem do seu quadro. Caso você já tenha ressonância, raio-X ou laudos anteriores, basta trazê-los para complementar a análise.",
+  },
+];
+
+function PerguntasFrequentes() {
+  return (
+    <section id="faq" className="border-t border-line bg-paper px-6 py-24 md:px-10 md:py-28">
+      <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start lg:gap-16">
+        <Reveal direction="left" duration={900} className="max-w-md">
+          <PrecisionTag label="Tire suas dúvidas" className="text-slate" />
+          <h2 className="mt-4 text-4xl font-display font-extrabold leading-[1.05] text-ink md:text-5xl">
+            Perguntas
+            <br />
+            <span className="text-cyan-deep">frequentes.</span>
+          </h2>
+          <p className="mt-4 text-base leading-relaxed text-slate">
+            Entenda como funcionam os tratamentos e o que esperar da sua avaliação no consultório.
+          </p>
+        </Reveal>
+
+        <Reveal direction="right" delay={200} duration={900}>
+          <FaqAccordion items={faqItems} />
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
 /* ─────────────────────────── CTA FINAL ─────────────────────────── */
 
 function CtaFinal() {
@@ -381,10 +447,9 @@ function CtaFinal() {
       {/* Mobile: image above copy */}
       <div className="relative aspect-[4/5] w-full md:hidden">
         <Image
-          src="/images/final-cta-mobile.jpg"
-          alt="Estúdio de reabilitação Wesley Loureno"
+          src="/images/final-cta-mobile.png"
+          alt="Estúdio de reabilitação Everton Carlos"
           fill
-          quality={90}
           sizes="100vw"
           className="object-cover object-top"
         />
@@ -393,41 +458,35 @@ function CtaFinal() {
 
       {/* Desktop / tablet: full-bleed background with copy overlaid */}
       <Image
-        src="/images/final-cta-bg.jpg"
-        alt="Estúdio de reabilitação Wesley Loureno"
+        src="/images/final-cta-bg.png"
+        alt="Estúdio de reabilitação Everton Carlos"
         fill
-        quality={100}
         sizes="100vw"
-        className="hidden object-cover object-[78%_8%] md:block"
+        className="hidden object-cover object-[66%_20%] md:block"
       />
       <div className="absolute inset-0 hidden bg-gradient-to-r from-ink from-0% via-ink/45 via-30% to-transparent to-52% md:block" />
       <SpineLine className="pointer-events-none absolute right-10 top-1/2 hidden h-[120%] w-16 -translate-y-1/2 text-cyan/15 lg:block" />
 
-      <Reveal className="relative z-10 mx-auto w-full max-w-6xl px-6 py-12 md:px-0 md:py-0">
+      <Reveal direction="up" duration={900} className="relative z-10 mx-auto w-full max-w-6xl px-6 py-12 md:px-0 md:py-0">
         <PrecisionTag label="Invista em você" className="text-cyan" />
         <h2 className="mt-5 max-w-2xl text-4xl font-display font-extrabold leading-[1.05] md:text-6xl">
           Volte a andar, trabalhar
           <br />e <span className="text-cyan">dormir sem dor.</span>
         </h2>
         <p className="mt-6 max-w-md text-paper/70">
-          Sua avaliação começa online, agora — leva menos de 2 minutos.
+          Agende sua avaliação diretamente pelo WhatsApp e dê o primeiro passo
+          para viver sem dor.
         </p>
 
         <div className="mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-          <Link
-            href="/quiz"
-            className="inline-flex items-center gap-2 rounded-md bg-cyan px-8 py-4 text-base font-bold text-ink transition-colors hover:bg-white"
-          >
-            Iniciar minha avaliação agora
-            <ArrowIcon />
-          </Link>
           <a
             href={WHATSAPP_HREF}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm text-paper/60 underline decoration-paper/30 underline-offset-4 transition-colors hover:text-cyan hover:decoration-cyan"
+            className="inline-flex items-center gap-2 rounded-md bg-cyan px-8 py-4 text-base font-bold text-ink transition-colors hover:bg-white"
           >
-            prefere WhatsApp? fale direto
+            Agendar Avaliação
+            <ArrowIcon />
           </a>
         </div>
       </Reveal>
@@ -443,24 +502,24 @@ function Footer() {
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 md:flex-row md:items-center md:justify-between">
         <Logo dark />
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 font-mono text-[11px] uppercase tracking-wide text-paper/50">
-          <span>Anápolis-GO</span>
-          <Link href="/quiz" className="hover:text-cyan transition-colors">
-            Avaliação Online
-          </Link>
-          <a href={WHATSAPP_HREF} target="_blank" rel="noopener noreferrer" className="hover:text-cyan transition-colors">
-            WhatsApp
+          <a href="#sintomas" className="hover:text-cyan transition-colors">
+            Sintomas
           </a>
-          <a
-            href="https://instagram.com/dr.wesleyquiroprata"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-cyan transition-colors"
-          >
-            @dr.wesleyquiroprata
+          <a href="#sobre" className="hover:text-cyan transition-colors">
+            Sobre
+          </a>
+          <a href="#depoimentos" className="hover:text-cyan transition-colors">
+            Depoimentos
+          </a>
+          <a href="#faq" className="hover:text-cyan transition-colors">
+            Dúvidas
+          </a>
+          <a href={WHATSAPP_HREF} target="_blank" rel="noopener noreferrer" className="hover:text-cyan transition-colors">
+            Agendar Avaliação
           </a>
         </div>
         <p className="font-mono text-[10px] text-paper/35">
-          © {new Date().getFullYear()} Wesley Loureno
+          © {new Date().getFullYear()} Everton Carlos
         </p>
       </div>
     </footer>
@@ -469,15 +528,21 @@ function Footer() {
 
 /* ─────────────────────────── UI ATOMS ─────────────────────────── */
 
-function Logo({ dark = false }: { dark?: boolean }) {
+function Logo({
+  dark = false,
+  className = "h-11 sm:h-12 md:h-14",
+}: {
+  dark?: boolean;
+  className?: string;
+}) {
   return (
     <Link href="/" className="flex items-center">
       <Image
-        src={dark ? "/images/logo-mark-dark.png" : "/images/logo-mark-light.png"}
-        alt="Wesley Loureno — Fisioterapia e Quiropraxia Desportiva"
-        width={458}
-        height={83}
-        className="h-8 w-auto"
+        src={dark ? "/images/logo-mark-dark.svg" : "/images/logo-mark-light.svg"}
+        alt="Everton Carlos — Fisioterapia e Quiropraxia Desportiva"
+        width={472}
+        height={94}
+        className={`${className} w-auto transition-transform hover:scale-[1.02]`}
         priority
       />
     </Link>

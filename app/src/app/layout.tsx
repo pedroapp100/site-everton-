@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Manrope, JetBrains_Mono } from "next/font/google";
+import { Preloader } from "@/components/Preloader";
 import "./globals.css";
 
 const poppins = localFont({
@@ -32,11 +33,11 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Wesley Loureno | Fisioterapia e Quiropraxia Desportiva",
+  title: "Everton Carlos | Fisioterapia e Quiropraxia Desportiva",
   description:
     "Fisioterapia e quiropraxia especializada para alívio da dor, reabilitação e alto desempenho. Cuidado personalizado, resultados reais.",
   openGraph: {
-    title: "Wesley Loureno | Fisioterapia e Quiropraxia Desportiva",
+    title: "Everton Carlos | Fisioterapia e Quiropraxia Desportiva",
     description: "Movimento sem dor. Performance sem limites.",
     type: "website",
   },
@@ -49,7 +50,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR" className={`${poppins.variable} ${manrope.variable} ${jetbrainsMono.variable}`}>
-      <body className="min-h-full">{children}</body>
+      <body className="min-h-full">
+        <Preloader />
+        {children}
+      </body>
     </html>
   );
 }

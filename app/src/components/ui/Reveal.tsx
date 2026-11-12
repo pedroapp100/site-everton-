@@ -2,17 +2,27 @@
 
 import { ReactNode, useEffect, useRef, useState } from "react";
 
+export type RevealDirection = "up" | "down" | "left" | "right" | "zoom" | "none";
+
+interface RevealProps {
+  children: ReactNode;
+  className?: string;
+  direction?: RevealDirection;
+  delay?: number; // Delay em milissegundos (ex: 150, 300)
+  duration?: number; // Duração em ms (default: 800)
+}
+
 /**
- * Fade + slide-up on scroll, mobile only (md: forces the final state so
- * desktop is unaffected). Animates once, then stops observing.
+ * Animação de entrada suave e moderna ao rolar a página (Scroll-triggered entrance animation)
+ * Funciona de forma responsiva (mobile e desktop) e respeita as preferências de acessibilidade.
  */
 export function Reveal({
   children,
   className = "",
-}: {
-  children: ReactNode;
-  className?: string;
-}) {
+  direction = "up",
+  delay = 0,
+  duration = 800,
+}: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -27,17 +37,40 @@ export function Reveal({
           observer.unobserve(el);
         }
       },
-      { threshold: 0.15, rootMargin: "0px 0px -10% 0px" }
+      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
     );
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
+  const getHiddenTransform = () => {
+    switch (direction) {
+      case "up":
+        return "translate-y-10";
+      case "down":
+        return "-translate-y-10";
+      case "left":
+        return "translate-x-12";
+      case "right":
+        return "-translate-x-12";
+      case "zoom":
+        return "scale-95";
+      case "none":
+        return "";
+    }
+  };
+
   return (
     <div
       ref={ref}
-      className={`transition-all duration-700 ease-out motion-reduce:transition-none md:opacity-100 md:translate-y-0 md:transition-none ${
-        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+      style={{
+        transitionDuration: `${duration}ms`,
+        transitionDelay: `${delay}ms`,
+      }}
+      className={`transition-all cubic-bezier(0.16,1,0.3,1) motion-reduce:transition-none motion-reduce:transform-none motion-reduce:opacity-100 ${
+        visible
+          ? "opacity-100 translate-x-0 translate-y-0 scale-100"
+          : `opacity-0 ${getHiddenTransform()}`
       } ${className}`}
     >
       {children}
