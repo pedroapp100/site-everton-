@@ -33,13 +33,31 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://site-everton-iota.vercel.app"),
   title: "Everton Carlos | Fisioterapia e Quiropraxia Desportiva",
   description:
     "Fisioterapia e quiropraxia especializada para alívio da dor, reabilitação e alto desempenho. Cuidado personalizado, resultados reais.",
   openGraph: {
     title: "Everton Carlos | Fisioterapia e Quiropraxia Desportiva",
     description: "Movimento sem dor. Performance sem limites.",
+    url: "https://site-everton-iota.vercel.app",
+    siteName: "Everton Carlos",
+    locale: "pt_BR",
     type: "website",
+    images: [
+      {
+        url: "/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Everton Carlos — Fisioterapia e Quiropraxia Desportiva",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Everton Carlos | Fisioterapia e Quiropraxia Desportiva",
+    description: "Movimento sem dor. Performance sem limites.",
+    images: ["/images/og-image.jpg"],
   },
 };
 
