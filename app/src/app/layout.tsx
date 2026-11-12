@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Manrope, JetBrains_Mono } from "next/font/google";
 import { Preloader } from "@/components/Preloader";
+import { WhatsAppFloating } from "@/components/WhatsAppFloating";
 import "./globals.css";
 
 const poppins = localFont({
@@ -71,6 +72,7 @@ export default function RootLayout({
       <body className="min-h-full">
         <Preloader />
         {children}
+        <WhatsAppFloating />
       </body>
     </html>
   );
