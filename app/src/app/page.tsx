@@ -194,6 +194,30 @@ const symptoms = [
     pos: "object-center",
     wide: true,
   },
+  {
+    slug: "eletrodry",
+    label: "Eletroterapia & Dry Needling",
+    sub: "alívio profundo da dor crônica",
+    img: "/images/eletrodry-fit.png",
+    tag: "DOR · ELETROESTIMULAÇÃO",
+    pos: "object-center",
+  },
+  {
+    slug: "ventosaterapia",
+    label: "Ventosaterapia",
+    sub: "circulação e descompressão muscular",
+    img: "/images/ventosaterapia-fit.png",
+    tag: "MIOFASCIAL · RECUPERAÇÃO",
+    pos: "object-center",
+  },
+  {
+    slug: "infiltracao",
+    label: "Infiltração com Ácido Hialurônico",
+    sub: "viscossuplementação articular",
+    img: "/images/infiltracao-fit.png",
+    tag: "INJETÁVEIS · ARTICULAÇÃO",
+    pos: "object-center",
+  },
 ];
 
 function Sintomas() {
