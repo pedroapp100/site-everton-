@@ -15,6 +15,7 @@ export default function Home() {
       <Sobre />
       <ProvaSocial />
       <PerguntasFrequentes />
+      <Localizacao />
       <CtaFinal />
       <Footer />
     </main>
@@ -40,6 +41,9 @@ function Nav() {
           </a>
           <a href="#faq" className="text-sm font-semibold uppercase tracking-wide text-paper/70 transition-colors hover:text-cyan">
             Dúvidas
+          </a>
+          <a href="#localizacao" className="text-sm font-semibold uppercase tracking-wide text-paper/70 transition-colors hover:text-cyan">
+            Como Chegar
           </a>
         </div>
         <a
@@ -439,6 +443,125 @@ function PerguntasFrequentes() {
   );
 }
 
+/* ─────────────────────────── COMO CHEGAR / LOCALIZAÇÃO ─────────────────────────── */
+
+const GOOGLE_MAPS_LINK =
+  "https://maps.google.com/?q=Cl%C3%ADnica+de+Fisioterapia+e+Quiropraxia+em+An%C3%A1polis+%E2%80%93+Tratamento+da+Dor+e+Escoliose+%7C+Dr.+Everton+Rocha";
+
+function Localizacao() {
+  return (
+    <section id="localizacao" className="relative overflow-hidden bg-ink px-6 py-24 text-paper md:px-10 md:py-32">
+      {/* Detalhes de luz de fundo */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-20 top-1/2 h-96 w-96 -translate-y-1/2 rounded-full bg-cyan/10 blur-3xl"
+      />
+
+      <div className="mx-auto max-w-6xl">
+        <Reveal direction="down" className="mx-auto max-w-2xl text-center">
+          <PrecisionTag label="Onde estamos" className="text-cyan justify-center" />
+          <h2 className="mt-4 text-4xl font-display font-extrabold leading-[1.1] text-white md:text-5xl">
+            Como chegar à clínica
+          </h2>
+          <p className="mt-4 text-base leading-relaxed text-paper/75 md:text-lg">
+            Estamos em Anápolis, em um ambiente acolhedor e preparado para o seu conforto e reabilitação.
+            Toque em &quot;Abrir rota&quot; para navegar diretamente no seu aplicativo de mapas.
+          </p>
+        </Reveal>
+
+        <Reveal direction="up" delay={200} className="mt-14 overflow-hidden rounded-3xl border border-line-dark bg-white/[0.03] shadow-2xl backdrop-blur-sm">
+          <div className="grid grid-cols-1 lg:grid-cols-12">
+            {/* Cartão de informações do local */}
+            <div className="flex flex-col justify-between p-8 sm:p-10 lg:col-span-5 lg:p-12">
+              <div>
+                <div className="inline-flex items-center gap-2 rounded-full border border-cyan/30 bg-cyan/10 px-3.5 py-1 text-xs font-semibold text-cyan">
+                  <span className="h-2 w-2 rounded-full bg-cyan animate-pulse" />
+                  Atendimento com hora marcada
+                </div>
+
+                <h3 className="mt-6 text-2xl font-display font-extrabold text-white md:text-3xl">
+                  Dr. Everton Rocha
+                </h3>
+                <p className="mt-1 font-mono text-xs uppercase tracking-wider text-cyan">
+                  Fisioterapia &amp; Quiropraxia Desportiva
+                </p>
+
+                <div className="mt-8 space-y-4">
+                  <div className="flex items-start gap-3.5 text-paper/85">
+                    <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/10 text-cyan">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="h-4 w-4">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                        <circle cx="12" cy="10" r="3" />
+                      </svg>
+                    </span>
+                    <div>
+                      <p className="text-sm font-semibold text-white">Anápolis — Goiás</p>
+                      <p className="text-sm text-paper/65">
+                        Clínica de Fisioterapia e Quiropraxia — Tratamento da Dor e Escoliose
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3.5 text-paper/85">
+                    <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/10 text-cyan">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="h-4 w-4">
+                        <circle cx="12" cy="12" r="10" />
+                        <polyline points="12 6 12 12 16 14" />
+                      </svg>
+                    </span>
+                    <div>
+                      <p className="text-sm font-semibold text-white">Horário de funcionamento</p>
+                      <p className="text-sm text-paper/65">Segunda a Sexta · Conforme agendamento</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <a
+                  href={GOOGLE_MAPS_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-cyan px-6 py-3.5 text-sm font-bold text-ink shadow-[0_0_20px_rgba(0,191,244,0.35)] transition-all hover:bg-white hover:shadow-[0_0_25px_rgba(0,191,244,0.6)]"
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.2} className="h-4 w-4">
+                    <polygon points="3 11 22 2 13 21 11 13 3 11" />
+                  </svg>
+                  Como chegar
+                </a>
+
+                <a
+                  href={WHATSAPP_HREF}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-line-dark bg-white/5 px-6 py-3.5 text-sm font-bold text-white transition-all hover:border-cyan/50 hover:bg-white/10"
+                >
+                  Falar no WhatsApp
+                </a>
+              </div>
+            </div>
+
+            {/* Iframe do Google Maps integrado */}
+            <div className="relative min-h-[380px] w-full border-t border-line-dark lg:col-span-7 lg:min-h-[460px] lg:border-l lg:border-t-0">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d254.86278870922146!2d-48.94629956955773!3d-16.334373342586886!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935ea5a6b7f7ac1d%3A0x4e4836475916956b!2sCl%C3%ADnica%20de%20Fisioterapia%20e%20Quiropraxia%20em%20An%C3%A1polis%20%E2%80%93%20Tratamento%20da%20Dor%20e%20Escoliose%20%7C%20Dr.%20Everton%20Rocha!5e0!3m2!1spt-BR!2sbr!4v1794580213530!5m2!1spt-BR!2sbr"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+                className="absolute inset-0 h-full w-full grayscale-[0.15] contrast-[1.08] transition-all duration-300 hover:grayscale-0"
+                title="Localização da Clínica de Fisioterapia e Quiropraxia - Dr. Everton Rocha"
+              />
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
 /* ─────────────────────────── CTA FINAL ─────────────────────────── */
 
 function CtaFinal() {
@@ -513,6 +636,9 @@ function Footer() {
           </a>
           <a href="#faq" className="hover:text-cyan transition-colors">
             Dúvidas
+          </a>
+          <a href="#localizacao" className="hover:text-cyan transition-colors">
+            Como Chegar
           </a>
           <a href={WHATSAPP_HREF} target="_blank" rel="noopener noreferrer" className="hover:text-cyan transition-colors">
             Agendar Avaliação
